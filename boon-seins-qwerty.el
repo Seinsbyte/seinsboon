@@ -120,7 +120,10 @@
 (define-key boon-command-map "f" '("fetch" . boon-splice))
 (define-key boon-command-map "F" 'yank-pop)
 
-(define-key boon-command-map "g" '("goto" . boon-goto-map))
+(define-key boon-command-map "G" '("goto" . boon-goto-map))
+(define-key boon-command-map "g" 'counsel-git-grep)
+
+
 
 ;; BOTTOM ROW
 
@@ -159,7 +162,8 @@
 
 (define-key boon-command-map "P" 'kmacro-end-or-call-macro) ; Play
 (define-key boon-command-map "X" 'boon-highlight-regexp)
-(define-key boon-command-map (kbd "<RET>") 'boon-split-line)
+(define-key boon-command-map (kbd "<RET>") 'boon-open-next-line)
+
 
 ;; X-MAPS
 

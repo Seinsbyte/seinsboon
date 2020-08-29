@@ -243,6 +243,14 @@ Version 2016-06-19"
         ;; close
         (kill-buffer (current-buffer))))))
 
-
+(defun boon-open-next-line ()
+  "Open the line after the current one."
+  (interactive)
+  (save-excursion
+    (end-of-line)
+    (when (eq (point) (point-max))
+      (insert "\n")))
+  (forward-line)
+  (boon-open-line))
 
 (provide 'boon-seins-functions)
