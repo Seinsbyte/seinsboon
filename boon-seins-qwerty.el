@@ -54,7 +54,7 @@
 (define-key boon-moves-map "H"  'avy-goto-char)
 
 (define-key boon-moves-map "j" 'backward-word)
-(define-key boon-moves-map "J" 'boon-smarter-backward)
+(define-key boon-moves-map "J" 'backward-sentence)
 
 (define-key boon-moves-map "k"  'backward-char)
 (define-key boon-moves-map "K"  'boon-smarter-upward)
@@ -63,7 +63,7 @@
 (define-key boon-moves-map "L"  'boon-smarter-downward)
 
 (define-key boon-moves-map ";" 'forward-word)
-(define-key boon-moves-map ":" 'boon-smarter-forward)
+(define-key boon-moves-map ":" 'forward-sentence)
 
 
 ;; BOTTOM ROW
