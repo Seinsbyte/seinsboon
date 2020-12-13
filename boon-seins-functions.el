@@ -67,6 +67,40 @@ Version 2016-07-23"
             xah-right-brackets)))
   (setq xah-right-brackets (reverse xah-right-brackets)))
 
+(defun xah-forward-pare-smart ()
+  "Move cursor to the current or next string parenthesis.
+Place cursor at the position after the left quote.
+Repeated call will find the next string.
+URL `http://ergoemacs.org/emacs/emacs_navigating_keys_for_brackets.html'
+Version 2016-11-22"
+  (interactive)
+  (let (($pos (point)))
+    (if (nth 3 (syntax-ppss))
+        (progn
+          (backward-up-list 1 'ESCAPE-STRINGS 'NO-SYNTAX-CROSSING)
+          (forward-sexp)
+          (re-search-forward "(" nil t))
+      (progn (re-search-forward "(" nil t)))
+    (when (<= (point) $pos)
+      (progn (re-search-forward "(" nil t)))))
+
+(defun xah-backward-pare-smart ()
+  "Move cursor to the previous occurrence of \".
+If there are consecutive quotes of the same char, keep moving until none.
+Returns `t' if found, else `nil'.
+URL `http://ergoemacs.org/emacs/emacs_navigating_keys_for_brackets.html'
+Version 2016-07-23"
+  (interactive)
+  (if (re-search-backward ")+" nil t)
+      (when (char-before) ; isn't nil, at beginning of buffer
+        (while (char-equal (char-before) (char-after))
+          (left-char)
+          t))
+    (progn
+      (message "No more parenthesis before cursor.")
+      nil)))
+
+
 (defun xah-backward-left-bracket ()
   "Move cursor to the previous occurrence of left bracket.
 The list of brackets to jump to is defined by `xah-left-brackets'.

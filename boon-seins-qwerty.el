@@ -12,7 +12,7 @@
 
 (define-key boon-select-map "w"  'boon-select-word)
 
-(define-key boon-select-map "e"  'boon-select-sentence)
+(define-key boon-select-map "e"  'boon-select-sentence) ;; sEntence
 
 (define-key boon-select-map "t"  'boon-select-org-table-cell) ;; Table
 (define-key boon-select-map "T"  'boon-select-org-tree) ;; Tree
@@ -31,6 +31,10 @@
 (define-key boon-select-map "z"  'boon-select-content) ;; inZide
 
 (define-key boon-select-map "b"  'boon-select-blanks) ;; blanKs
+
+;; Toggle Special state
+(define-key boon-special-map "\\" '(lambda () (interactive) (setq-local boon-special-state nil) (setq-local boon-command-state 1)))
+(define-key boon-command-map "\\" '(lambda () (interactive) (setq-local boon-command-state nil) (setq-local boon-special-state 1)))
 
 ;; RIGHT HAND - MOVEMENTS
 
@@ -81,8 +85,10 @@
 (define-key boon-command-map "8"  'xah-backward-quote)
 (define-key boon-command-map "9"  'xah-forward-quote-smart)
 
-(define-key boon-command-map "*"  'xah-backward-left-bracket)
-(define-key boon-command-map "("  'xah-forward-right-bracket)
+;; (define-key boon-command-map "*"  'xah-backward-left-bracket)
+;; (define-key boon-command-map "("  'xah-forward-right-bracket)
+(define-key boon-command-map "*"  'xah-backward-pare-smart)
+(define-key boon-command-map "("  'xah-forward-pare-smart)
 
 (define-key boon-command-map "0" 'universal-argument)
 
@@ -162,7 +168,7 @@
 
 (define-key boon-command-map "P" 'kmacro-end-or-call-macro) ; Play
 (define-key boon-command-map "X" 'boon-highlight-regexp)
-(define-key boon-command-map (kbd "<RET>") 'boon-open-next-line)
+(define-key boon-command-map (kbd "<RET>") 'boon-open-line)
 
 
 ;; X-MAPS
